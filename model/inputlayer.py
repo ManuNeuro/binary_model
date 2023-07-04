@@ -76,7 +76,7 @@ class inputLayer():
         
         # Arguments for weight initialization
         if self.Ain is not None:
-            print('SetWeightOut', 'A is not None')
+            #print('SetWeightOut', 'A is not None')
             kwargs = {'A':self.Ain}
         else:
             raise Exception('Error! Ain must be initialized to set weights')
@@ -97,7 +97,7 @@ class inputLayer():
         
         # If no architecture and weights are initialized 
         if self.Ain is None:
-            print('build input')
+            #print('build input')
             I = kwargs.get('I', 0.6)
             seed = kwargs.get('seed', None)
             distribution = kwargs.get('distribution', 'gaussian')

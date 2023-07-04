@@ -175,7 +175,7 @@ class readout():
         
         # Arguments for weight initialization
         if self.Aout is not None:
-            print('SetWeightOut', 'A is not None')
+            # print('SetWeightOut', 'A is not None')
             kwargs = {'A':self.Aout}
         else:
             raise Exception('Error! Aout must be initialized to set weights')
@@ -200,16 +200,16 @@ class readout():
     
     def costFunction(self, y_target, option='mse'): # ToDO
         length = np.shape(self.y_concatenated)[1]
-        print('y_pred', np.shape(self.y_concatenated))
+        #print('y_pred', np.shape(self.y_concatenated))
         y_target, _ = checkDim(y_target, Nin=self.outSize, Nout=length)
-        print('YTARGET', np.shape(y_target), type(y_target))
+        #print('YTARGET', np.shape(y_target), type(y_target))
         if option=='mse': # Mean square error
             self.c_concatenated = []
             for n in range(self.outSize):
                 self.c_concatenated.append((self.y_concatenated[n]-y_target[n])**2)
         self.c_concatenated = np.array(self.c_concatenated)
         avgCost = sum(self.c_concatenated.sum(axis=1)/length)/self.outSize
-        print('Average cost of simulation :', avgCost)
+        #print('Average cost of simulation :', avgCost)
         return avgCost
 
     def read(self, 
@@ -231,14 +231,14 @@ class readout():
             optionCost = kwargs.get('optionCost', 'mse')
         # 1st run to obtain permanent regime
         if convergingTime > 0:
-            print('--- Run convergence ---')
+            # print('--- Run convergence ---')
             self.inputCond = False
             self.initRandomState(I=0.2)
             self.inputStream = None
             self.run(convergingTime, **optionRun)
         # 2nd run to submit inputs
         u = inputs[0]; t = inputs[1]
-        print('-> Run with inputs ->')
+        #print('-> Run with inputs ->')
         # Prepare inputs for the simulation
         seed = kwargs.get('seed', None)
         self.setInputIn(u, t, duration=duration, seed=seed, tag=tag)
@@ -273,7 +273,7 @@ class readout():
               I: float = 1.0,
               tag = None,
               **kwargs):
-        print('---- Train readout ----')
+        #print('---- Train readout ----')
         # Update metadata
         self.metadata.update({'learning':option,
                               'optimizer':optimizer,
@@ -285,7 +285,7 @@ class readout():
         if option=='online':
             
             if optimizer == 'pytorch':
-                print('--> pytorch regression')
+                #print('--> pytorch regression')
                 optionOptim = kwargs.get('optionOptim').copy()
                 activation = optionOptim.get('activation', 'sigmoid')
                 optim = optionOptim.get('optim', 'SGD')
@@ -320,16 +320,16 @@ class readout():
                     Yt = np.array(y_targets)
                     X, _ = checkDim(self.x_concatenated, Nin=nbSample, Nout=self.reducedSize)
                     Yt, _ = checkDim(y_target, Nin=nbSample, Nout=self.outSize)
-                    X = torch.tensor(X, dtype=torch.float32)
+                    X = torch.tensor(np.array(X), dtype=torch.float32)
                     X = X.view(nbSample, inSize)
-                    Yt = torch.tensor(Yt, dtype=torch.float32)
+                    Yt = torch.tensor(np.array(Yt), dtype=torch.float32)
                     Yt = Yt.view(nbSample, outSize)
                     # print('train X', np.shape(X), type(X))
                     # print('train Y', np.shape(Yt), type(Yt))
                     # Train the weights
                     Wout, b, layer = optimizer(X, Yt, layer=layer, **optionOptim)  
-                    print('train, W', np.shape(Wout))
-                    print('train, b', np.shape(b))
+                    #print('train, W', np.shape(Wout))
+                    #print('train, b', np.shape(b))
                     
                     # Reset state
                     self.reset()
@@ -444,26 +444,26 @@ class readout():
         t1 = np.arange(0, timeBeforePred) #t[startTime+delay-1:startTime+delay+timeBeforePred]-t[startTime+delay-1]
 
         # Prepare inputs for the simulation
-        print('predict, u, t', np.shape(u1), np.shape(t1))
+        #print('predict, u, t', np.shape(u1), np.shape(t1))
         self.setInputIn([u1], [t1], duration=timeBeforePred, tag=tag, **kwargs)
         
         # Last output
         y0 = self.y_concatenated[-1]
-        print('u t+1 :', u1[0])
-        print('y t+1 :', y0)    
+        #print('u t+1 :', u1[0])
+        #print('y t+1 :', y0)    
         
-        print('predict, u', np.shape(self.inputStream['u']))
+        #print('predict, u', np.shape(self.inputStream['u']))
         
         # Options
         optionRun = kwargs.get('optionRun', {'spikeCount':True}).copy()
         optionRun.update({'readout':'output'})
         # Predict
         self.feedback = True
-        print('duration', duration)
+        # print('duration', duration)
         self.run(duration, read=True, **optionRun)
         self.feedback = False
 
-        print('predict, y', np.shape(self.y_concatenated))
+        # print('predict, y', np.shape(self.y_concatenated))
 
         return self.y_concatenated
                 

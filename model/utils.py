@@ -123,10 +123,10 @@ def generateRandomArchitecture(brain, option, layer, **kwargs):
         K = int(I*brain.N)
     elif option == 'exclusion' and exclusion is not None:
         newIdx = np.delete(idxNet, exclusion.astype(int))
-        print('generate, idxNet', len(newIdx))
+        #print('generate, idxNet', len(newIdx))
         idxNet = rnd.sample(list(newIdx), np.clip(int(I*brain.N), 0, len(newIdx)))
         K = int(len(idxNet)/size)
-        print('generate, K', K)
+        #print('generate, K', K)
     else:
         raise Exception('in "generateRandomArchitecture()" : option not supported.')
         
@@ -427,10 +427,10 @@ def formatDimension(func):
     @wraps(func)
     def wrapper(*arg, **kwargs):
         newArg = []
-        print(f"Format dimension for: {func.__name__}")
+        #print(f"Format dimension for: {func.__name__}")
         for i, data in enumerate(arg):
             dataFormated, flag = checkDim(data, **kwargs)
-            print(f"Dimension after cheking: {type(dataFormated)}, {np.shape(dataFormated)}")
+            #print(f"Dimension after cheking: {type(dataFormated)}, {np.shape(dataFormated)}")
             newArg.append(dataFormated)
             kwargs.update({'flag':flag})
         return func(*newArg, **kwargs)
@@ -930,15 +930,7 @@ def editMetadataItem(N, K, meanWeights, sim, experiment, I=None):
         print('------')
         print('dataPath', directory)
         print(metadata[item])
-        
-        # split = filename.split('metadata')[1]
-        # itemFile = 'idxActive'+split.split('.npy')[0]
-        # metadata[item] = itemFile
-        # print(' ---- Save new item in metadata -----')
-        # print('New item :', itemFile)
-        # print(filename)
-        # np.save(filename, metadata)
-        # print('*****************')
+    
 
 def editMetadataIdx(N, K, meanWeights, sim, experiment, I=None):
     directoryMetadata = dataPath(sim, experiment, N=N, K=K, meanWeights=meanWeights, I=I, inputs=False)
@@ -1272,7 +1264,7 @@ def test_attractor(A_trial, N):
                 break
     # Last possibility is chaotic
     if condConst == condDead == condCyclic == condSaturated == False:
-        label = "Chaotic attractor"
+        label = "Irregular attractor"
         
     return label
 
@@ -1484,7 +1476,7 @@ def selectAllCircuits(nbcircuitPerSigma, N, K, nbtrial, stdWeightCond=None, I=0.
             if len(dictionaryArchitecture[stdWeight]) == nbcircuitPerSigma:
                 continue
             else:
-                print(seed, stdWeight)
+                #print(seed, stdWeight)
                 dictionaryArchitecture[stdWeight].append(seed)
             dictionaryArchitecture['metadata'].append(metadataFile)
     return dictionaryArchitecture

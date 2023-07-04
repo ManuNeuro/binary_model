@@ -182,7 +182,7 @@ class binaryModel(inputLayer, readout):
                         architecture=None, weights=None, bias=None, 
                         seed=None, tag=None, **kwargs): 
         #architecture = kwargs.get('architecture', 'SOUCE')
-        print('addReadoutLayer', activation, architecture)
+        #print('addReadoutLayer', activation, architecture)
         # Init readout class
         if architecture == 'auto':
             architectureInit = None
@@ -337,7 +337,7 @@ class binaryModel(inputLayer, readout):
             
         # Check if an input has been set
         if self.inputCond:
-            print('-> Input sent to the network ->')
+            #print('-> Input sent to the network ->')
             T0 = self.inputStream['t'][0]  # Starting time of stimulus
             Tend = self.inputStream['t'][1]# Ending time of stimulus
             tIdx = 0 # Idx of stimulus time
