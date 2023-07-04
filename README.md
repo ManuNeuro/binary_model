@@ -1,6 +1,6 @@
 # BinaryModel
  This is a model for a Random Boolean Network (BRN) reservoir, with input and readout. 
- The folder `simulation` contains four jupyter notebook to test the model:
+ The folder `simulation` contains four jupyter notebooks to reproduce the experiment performed in the following [article](https://manuneuro.github.io/EmmanuelCalvet/assets/publications/2023_article_emmanuel_calvet_submited.pdf):
 
  1. `free_evolution`
  2. `attractor_statistics`
