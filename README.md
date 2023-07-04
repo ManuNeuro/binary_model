@@ -12,6 +12,10 @@
 Since the time of computation can be long, the folder `results` also include the four csv 
 of all experiments which had been used to produce all plots in the aforementioned article. 
 
+# Analysis of the data
+
+The analyses performed in the article are not yet available in this version of the code. 
+
 # Installation
 ```
 pip install requirement.text
