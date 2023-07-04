@@ -155,25 +155,13 @@ cython_debug/
 *.npy
 *.jpg
 *.png
-*.csv
+
 *.svg
 
 # Folders
-results/performanceTask/
-results/statisticalAnalysis/
-results/test/
-tests/
 *.ps
-*.csv
-*.csv
-*.csv
-simulations/performanceTask/white-noise.csv
-*.csv
-*.csv
-simulations/performanceTask/white-noise.csv
-*.csv
-*.csv
-*.eps
-simulations/performanceTask/white-noise.csv
-*.csv
-simulations/performanceTask/white-noise.csv
+
+
+
+
+
