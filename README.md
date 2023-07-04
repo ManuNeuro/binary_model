@@ -3,7 +3,7 @@
  The folder `simulation` contains four jupyter notebook to test the model:
 
  1. `free_evolution`
- 2. `attractor_statistics
+ 2. `attractor_statistics`
  3. `performance_prediction`
  4. `performance_memory`
 
