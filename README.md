@@ -10,7 +10,7 @@
 # Datas
 
 Since the time of computation can be long, the folder `results` also include the four csv 
-of all experiments, which as been used to produce all plots in the aforementioned article. 
+of all experiments, which had been used to produce all plots in the aforementioned article. 
 
 # Installation
 ```
