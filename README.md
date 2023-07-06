@@ -18,5 +18,5 @@ The analyses performed in the article are not yet available in this version of t
 
 # Installation
 ```
-pip install requirement.text
+pip install -r requirements.txt
 ```
