@@ -20,3 +20,16 @@ The analyses performed in the article are not yet available in this version of t
 ```
 pip install -r requirements.txt
 ```
+
+# Citation
+```
+cff-version: 1.1.0
+message: "If you use this software, please cite it as below."
+authors:
+  - family-names: Joe
+    given-names: Johnson
+    orcid: https://orcid.org/0000-0000-0000-0000
+title: ManuNeuro/binary_model: First release
+version: v1.0.0
+date-released: 2023-07-06
+```
