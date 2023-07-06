@@ -22,6 +22,7 @@ pip install -r requirements.txt
 ```
 
 # Citation
+[![DOI](https://zenodo.org/badge/663163707.svg)](https://zenodo.org/badge/latestdoi/663163707)
 ```
 cff-version: 1.1.0
 message: "If you use this software, please cite it as below."
